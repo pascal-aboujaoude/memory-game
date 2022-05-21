@@ -31,6 +31,7 @@
   height: 150px;
   border: 5px solid black;
   border-radius: 20px;
+  cursor: pointer;
 }
 
 .red {
@@ -39,6 +40,7 @@
   height: 150px;
   border: 5px solid black;
   border-radius: 20px;
+  cursor: pointer;
 }
 
 .boxes-yellowblue {
@@ -53,6 +55,7 @@
   height: 150px;
   border: 5px solid black;
   border-radius: 20px;
+  cursor: pointer;
 }
 
 .blue {
@@ -61,4 +64,27 @@
   height: 150px;
   border: 5px solid black;
   border-radius: 20px;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 900px) {
+  .title-game {
+    display: flex;
+    text-align: center;
+    padding-top: 50px;
+  }
+  .boxes-greenred {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 50px;
+    margin-bottom: 50px;
+    margin-top: 50px;
+  }
+  .boxes-yellowblue {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 50px;
+  }
 }
