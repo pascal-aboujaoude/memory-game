@@ -1,64 +1,54 @@
-var level = level + 1;
-var started = 0;
-var lost = 0;
+var buttonColors = ["red", "blue", "green", "yellow"];
+var userClickedPattern = [];
+var started = false;
+var level = 0;
 
-// function gameOver() {
-//   var wrong = new Audio("assets/wrong.mp3");
-//   wrong.play();
-// }
+var text = document.getElementById("level-title");
 
-document.getElementById("green").addEventListener("click", function () {
-  var green = new Audio("assets/green.mp3");
-  var greenDiv = document.getElementById("green");
-  greenDiv.style.boxShadow = "10px 20px 30px black";
-  green.play();
+document.body.addEventListener("click", function () {
+  if (!started) {
+    text.innerHTML = "Level " + level;
+    nextSequence();
+    started = true;
+  }
 });
 
-document.getElementById("red").addEventListener("click", function () {
-  var red = new Audio("assets/red.mp3");
-  red.play();
+document.getElementById("green").addEventListener("click", function () {
+  var audio = new Audio("sounds/green.mp3");
+  audio.play();
+  document.getElementById("green").classList.add("pressed");
+  userClickedPattern.push("green");
+  setTimeout(() => {
+    document.getElementById("green").classList.remove("pressed");
+  }, 100);
 });
 
 document.getElementById("blue").addEventListener("click", function () {
-  var blue = new Audio("assets/blue.mp3");
-  blue.play();
+  var audio = new Audio("sounds/blue.mp3");
+  audio.play();
+  document.getElementById("blue").classList.add("pressed");
+  userClickedPattern.push("blue");
+  setTimeout(() => {
+    document.getElementById("blue").classList.remove("pressed");
+  }, 100);
 });
 
 document.getElementById("yellow").addEventListener("click", function () {
-  var yellow = new Audio("assets/yellow.mp3");
-  yellow.play();
-});
-
-function sounds() {
-  var rand = [green, red, blue, yellow];
-  var randSound = rand[Math.floor(Math.random() * rand.length)];
-  return randSound;
-}
-
-function restartGame() {
-  started = 1;
-}
-
-function gameOver() {
-  started = 0;
-  lost = 1;
-  var wrong = new Audio("assets/wrong.mp3");
-  wrong.play();
-  var title = document.getElementByClassName("title-game");
-  title.innerHTML = "YOU LOST, RESTART GAME";
-}
-
-var start = document.getElementById("start");
-start.addEventListener("click", function () {
-  var soundToPlay = sounds();
-  var audio = new Audio("assets/+${soundToPlay}.mp3");
+  var audio = new Audio("sounds/yellow.mp3");
   audio.play();
+  document.getElementById("yellow").classList.add("pressed");
+  userClickedPattern.push("yellow");
+  setTimeout(() => {
+    document.getElementById("yellow").classList.remove("pressed");
+  }, 100);
 });
 
-// for (var x = 0; x < start.length; x++) {
-//   if (x === randSound) {
-//     title.innerHTML = "LEVEL" + level;
-//   } else {
-//     gameOver();
-//   }
-// }
+document.getElementById("red").addEventListener("click", function () {
+  var audio = new Audio("sounds/red.mp3");
+  audio.play();
+  document.getElementById("red").classList.add("pressed");
+  userClickedPattern.push("red");
+  setTimeout(() => {
+    document.getElementById("red").classList.remove("pressed");
+  }, 100);
+});
