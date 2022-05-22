@@ -67,12 +67,17 @@
   cursor: pointer;
 }
 
+.pressed {
+  box-shadow: 0 0 20px white;
+  background-color: grey;
+}
+
+.game-over {
+  background-color: red;
+  opacity: 0.8;
+}
+
 @media only screen and (max-width: 900px) {
-  .title-game {
-    display: flex;
-    text-align: center;
-    padding-top: 50px;
-  }
   .boxes-greenred {
     display: flex;
     justify-content: center;
@@ -81,6 +86,7 @@
     margin-bottom: 50px;
     margin-top: 50px;
   }
+
   .boxes-yellowblue {
     display: flex;
     justify-content: center;
