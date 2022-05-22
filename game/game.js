@@ -1,4 +1,5 @@
 var buttonColors = ["red", "blue", "green", "yellow"];
+var gamePattern = [];
 var userClickedPattern = [];
 var started = false;
 var level = 0;
@@ -7,11 +8,42 @@ var text = document.getElementById("level-title");
 
 document.body.addEventListener("click", function () {
   if (!started) {
-    text.innerHTML = "Level " + level;
+    text.innerHTML = "Level" + level;
     nextSequence();
     started = true;
   }
 });
+
+function startOver() {
+  level = 0;
+  gamePattern = [];
+  started = false;
+}
+
+function checkAnswer(currentLevel) {
+  if (currentLevel === 9) {
+    text.innerHTML = "Congratulations, you Won!";
+  } else {
+    if (gamePattern[currentLevel] === userClickedPattern[currentLevel]) {
+      if (userClickedPattern.length === gamePattern.length) {
+        setTimeout(function () {
+          nextSequence();
+        }, 1000);
+      }
+    } else {
+      var audio = new Audio("assets/wrong.mp3");
+      audio.play();
+
+      document.body.classList.add("game-over");
+      setTimeout(() => {
+        document.body.classList.remove("game-over");
+      }, 200);
+
+      text.innerHTML = "Game Over, Press Any Button to Restart";
+      startOver();
+    }
+  }
+}
 
 function nextSequence() {
   userClickedPattern = [];
